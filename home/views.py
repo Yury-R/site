@@ -6,9 +6,6 @@ from home.models import Article
 from django.views.generic import TemplateView, ListView, DetailView
 
 
-# Create your views here.
-
-
 def home(request):
     return render(request, 'home.html')
 
