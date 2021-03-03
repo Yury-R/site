@@ -25,10 +25,6 @@ class UserDetailView(DetailView):
     #     return context
 
 
-class ProfileUpdateView(UpdateView):
-    pass
-
-
 class UserDeleteView(DeleteView):
     model = User
     slug_field = "username"
