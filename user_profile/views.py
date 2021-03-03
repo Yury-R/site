@@ -32,15 +32,18 @@ class ProfileUpdateView(UpdateView):
 class UserDeleteView(DeleteView):
     model = User
     slug_field = "username"
-    slug_url_kwarg = 'username'
+    slug_url_kwarg = "username"
     template_name = "user/delete_profile.html"
-    success_url = 'user/successfully_deleted_profile.html'
+    success_url = "user/successfully_deleted_profile.html"
 
 class UserUpdateView(UpdateView):
     model = User
     slug_field = "username"
     slug_url_kwarg = "username"
     template_name = "user/edit_profile.html"
+    context_object_name = "user"
+    fields = ["username"]
+    success_url = "/articles/"
 
 
 # @login_required

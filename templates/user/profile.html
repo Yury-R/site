@@ -7,11 +7,13 @@
     <title>User_profile</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+<p>Hello, {{ user.username }}</p>
+{% endif %}
 <br>
 <div class="container">
     <div class="row">
-        <b>{{ user.username }}</b>
-        <p>{{ user.get_full_name }}</p>
+        <p>Full name:{{ user.get_full_name }}</p>
         <p>Phone:{{ user.profile.phone }}</p>
         <p>Country: {{ user.profile.country }}</p>
         <a class="btn btn-primary"
