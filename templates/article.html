@@ -9,8 +9,10 @@
 <body>
 <br>
     <div>
-        <b>{{ obj.title }} </b>
-        <p>{{ obj.content }}</p>
+        <b>Author: {{ obj.author }}</b>
+        <br>
+        <b>Title: {{ obj.title }} </b>
+        <p>Content: {{ obj.content }}</p>
                 <a class="btn btn-primary"
            href="{{ obj.id }}/edit/"
            role="button">Edit article</a>

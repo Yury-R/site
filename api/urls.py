@@ -3,8 +3,9 @@ from django.urls import path
 from api import views
 
 urlpatterns = [
-    path('test/', views.test),
+    path('api/test/', views.test),
     path('api/articles/', views.ArticleListAPIView.as_view()),
+    path('api/articles/<int:pk>', views.ArticleDetailAPIView.as_view()),
     # path('', views.home, name='home'),
     # # path('debug/', views.debug, name='debug'),
     # path('articles/', views.ArticleListView.as_view(), name='all-articles'),
