@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'user_profile',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Site_sam.urls'
 
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
 
 TEMPLATES = [
     {

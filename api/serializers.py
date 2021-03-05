@@ -1,12 +1,18 @@
+from profile import Profile
+
 from django.contrib.auth.models import User
 
 from django.urls import reverse
 
+from home.models import Article
+
 from rest_framework import serializers
 
-from rest_framework.viewsets import ModelViewSet
 
-from home.models import Article
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['country', 'phone', 'birth_date', ]
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -15,23 +21,33 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = [
-            "id", "title", "content", "author", "link"
+            "id", "title", "content", "author", "link",
         ]
 
     def get_link(self, obj):
         uri = reverse('articles-detail', kwargs={'pk': obj.pk})
         return self.context['request'].build_absolute_uri(uri)
 
+    def update(self, instance, validated_data):
+        request = self.context.get("request")
+        user = request.user
+        if user.is_authenticated and instance.author_id == user.id:
+            return super(ArticleSerializer, self).update(
+                instance, validated_data
+            )
+        raise Exception("No credentials")
+
 
 class UserSerializer(serializers.ModelSerializer):
     articles = serializers.SerializerMethodField()
     link = serializers.SerializerMethodField()
+    profile = ProfileSerializer
 
     class Meta:
         model = User
         fields = [
             "id", "first_name", "last_name", "username",
-            "articles", "link"
+            "articles", "link", 'profile',
         ]
 
     def get_articles(self, obj):
@@ -43,3 +59,11 @@ class UserSerializer(serializers.ModelSerializer):
         uri = reverse('users-detail', kwargs={'username': obj.username})
         return self.context['request'].build_absolute_uri(uri)
 
+    # def update(self, instance, validate_data ):
+    #     request = self.context.get('request')
+    #     user = request.user
+    #     if user.is_authenticated and instance.id == user.id:
+    #         return super(ArticleSerializer, self).update(
+    #             instance, validate_data
+    #         )
+    #     raise Exception('No credentials')

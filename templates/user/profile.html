@@ -20,6 +20,18 @@
            href="/{{ user.username }}/edit/"
            role="button">Редактировать юзера</a>
 
+        <h3>User articles:</h3>
+            {% for article in articles %}
+                <div class="card" style="width: 8cm;">
+                  <img src="https://i2.kym-cdn.com/photos/images/newsfeed/001/228/071/a5f.jpg" class="card-img-top" alt="">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ article.title}}</h5>
+                    <p class="card-text">{{ article.content }}</p>
+                    <a href="{% url 'get-articles' pk=article.pk %}" class="btn btn-primary">Go to article</a>
+                  </div>
+                </div>
+            {% endfor %}
+
     </div>
 </div>
 </body>
