@@ -4,6 +4,7 @@ from django.test import TestCase, Client
 
 from home.models import Article
 
+
 class ArticleTestCase(TestCase):
 
     def setUp(self) -> None:
@@ -11,7 +12,8 @@ class ArticleTestCase(TestCase):
             title='Test title',
             content='Test content'
         )
-        self.Client =Client()
+        self.Client = Client()
+
     def test_create_article(self):
         self.assertEqual(Article.objects.count(), 1)
 
@@ -19,10 +21,11 @@ class ArticleTestCase(TestCase):
         self.assertEqual(str(self.article), 'Test title - Test content')
 
     def test_api_get_article(self):
-        response_json = self.client.post("/api/articles/").data
-        print(response_json)
+        header = {"Content-type": "applications/json"}
+        response_json = self.client.get("/api/articles/", headers=header).json
+        self.assertEqual(response_json['count'], 1)
         self.assertEqual(
-            response_json["results"][0],
+            response_json["count"][0],
             {
                 "title": "Test title",
                 "id": 1,

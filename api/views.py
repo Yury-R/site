@@ -18,25 +18,23 @@ from api.permissions import IsAuthorOrReadOnly, IsUserOrReadOnly
 from api.serializers import ArticleSerializer, UserSerializer
 
 
-
 class ArticleViewSet(ModelViewSet):
-    permission_classes = (IsAuthenticated, IsAuthorOrReadOnly, )
+    permission_classes = (IsAuthenticated, IsAuthorOrReadOnly,)
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     pagination_class = CustomPagination
-    filter_backends = (SearchFilter, OrderingFilter, )
+    filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('title', 'content')
 
 
 class UserViewSet(ModelViewSet):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'username'
     pagination_class = LimitOffsetPagination
-    filter_backends = (SearchFilter, OrderingFilter, )
+    filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('first_name', 'last_name')
-
 
 # class ArticleListAPIView(ListCreateAPIView):
 #     queryset = Article.objects.all()

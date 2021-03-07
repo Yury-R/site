@@ -19,6 +19,7 @@ class IsUserOrReadOnly(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         if view.action == 'create':
-            user = view.get_object()
-            return request.user.id == user.id
+            return True
+        user = view.get_object()
+        return request.user.id == user.id
 
