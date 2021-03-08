@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
-from django.views.generic import DetailView, DeleteView, UpdateView
-
+from django.contrib.auth.views import LoginView
+from django.views.generic import DetailView, DeleteView, UpdateView, ListView
+from user_profile.forms import AuthUserForm
 
 # @login_required
 # def profile(request, username):
@@ -8,6 +9,33 @@ from django.views.generic import DetailView, DeleteView, UpdateView
 #     return render(
 #         request, "user/profile.html", {'user': user}
 #     )
+from home.models import Article
+
+
+class UserDeleteView(DeleteView):
+    model = User
+    slug_field = "username"
+    slug_url_kwarg = "username"
+    template_name = "user/delete_profile.html"
+    success_url = "user/successfully_deleted_profile.html"
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    slug_field = "username"
+    slug_url_kwarg = "username"
+    template_name = "user/edit_profile.html"
+    context_object_name = "user"
+    fields = ["username"]
+    success_url = "/articles/"
+
+
+class UserListView(ListView):
+    model = User
+    template_name = 'user/all_profiles.html'
+    ordering = 'username'
+    context_object_name = 'user'
+
 
 class UserDetailView(DetailView):
     model = User
@@ -23,22 +51,10 @@ class UserDetailView(DetailView):
         return context
 
 
-class UserDeleteView(DeleteView):
-    model = User
-    slug_field = "username"
-    slug_url_kwarg = "username"
-    template_name = "user/delete_profile.html"
-    success_url = "user/successfully_deleted_profile.html"
-
-class UserUpdateView(UpdateView):
-    model = User
-    slug_field = "username"
-    slug_url_kwarg = "username"
-    template_name = "user/edit_profile.html"
-    context_object_name = "user"
-    fields = ["username"]
-    success_url = "/articles/"
-
+class UserLoginView(LoginView):
+    template_name = 'user/login.html'
+    form_class = AuthUserForm
+    success_url = 'user/profiles.html'
 
 # @login_required
 # def edit_profile(request, username):
