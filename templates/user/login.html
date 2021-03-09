@@ -6,11 +6,7 @@
     <h2>Авторизация</h2>
     <form method="POST">
         {% csrf_token %}
-        {{ forms }}
         <button type="submit" class="btn btn-outline">Войти</button>
     </form>
     <hr>
-{#        Нету профиля? <a href="{% url 'reg' %}">Зарегистрироваться</a>#}
-{#    </div>#}
-{#</div>#}
 {% endblock %}
