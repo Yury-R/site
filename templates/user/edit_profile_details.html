@@ -20,16 +20,8 @@
                 {% csrf_token %}
                         <div class="mb-3">
                             <label for="username" class="from-label">Username</label>
-                            <input name="username" type="text" class="form-control" id="username" placeholder="username" value="{{ user.username }}">
+                            <input name="username" type="text" class="form-control-disabled" id="username" placeholder="username" value="{{ user.username }}">
                         </div>
-{#                        <div class="mb-3">#}
-{#                            <label for="first_name" class="from-label">First name</label>#}
-{#                            <input name="first_name" type="text" class="form-control" id="first_name" placeholder="first_name" value="{{ user.first_name }}">#}
-{#                        </div>#}
-{#                        <div class="mb-3">#}
-{#                            <label for="last_name" class="from-label">Last name</label>#}
-{#                            <input name="last_name" type="text" class="form-control" id="last_name" placeholder="last_name" value="{{ user.last_name }}">#}
-{#                        </div>#}
                         <div class="mb-3">
                             <label for="first_name" class="from-label">first_name</label>
                             <input name="first_name" type="text" class="form-control" id="first_name" placeholder="enter first_name" value="{{ user.first_name}}">

@@ -1,6 +1,7 @@
 from django.urls import reverse
 
 from django.test import TestCase, Client
+from rest_framework.test import APIClient
 
 from home.models import Article
 
@@ -12,7 +13,7 @@ class ArticleTestCase(TestCase):
             title='Test title',
             content='Test content'
         )
-        self.Client = Client()
+        self.Client = APIClient()
 
     def test_create_article(self):
         self.assertEqual(Article.objects.count(), 1)

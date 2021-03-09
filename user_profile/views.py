@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from user_profile.models import Profile
 from django.contrib.auth.views import LoginView
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView
 from user_profile.forms import AuthUserForm
@@ -26,8 +27,18 @@ class UserUpdateView(UpdateView):
     slug_url_kwarg = "username"
     template_name = "user/edit_profile.html"
     context_object_name = "user"
-    fields = ["username"]
+    fields = ["username", "first_name", "last_name"]
     success_url = "/articles/"
+
+
+class ProfileUpdateView(UpdateView):
+    model = Profile
+    slug_field = 'username'
+    slug_url_kwarg = 'profile'
+    template_name = 'user/edit_profile_details.html'
+    context_object_name = 'profile'
+    fields = ['country', 'phone']
+    success_url = 'articles'
 
 
 class UserListView(ListView):
