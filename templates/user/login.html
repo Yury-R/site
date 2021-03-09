@@ -4,10 +4,12 @@
 {%block content%}
     <h2>Авторизация</h2>
     <form method="POST">
+    <div class="container">
         {% csrf_token %}
         {{ form }}
         <hr>
         <button type="submit" class="btn btn-outline-warning">Login</button>
+    </div>
     </form>
     <hr>
 {%endblock%}
