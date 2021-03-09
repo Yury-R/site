@@ -44,11 +44,13 @@ class ArticleDetailView(DetailView):
     pk_url_kwarg = 'pk'
     context_object_name = 'obj'
 
+
 class ArticleListView(ListView):
     model = Article
     template_name = 'articles.html'
     ordering = 'title'
     context_object_name = 'articles'
+
 
 class ArticleUpdateView(UpdateView):
     model = Article

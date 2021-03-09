@@ -4,9 +4,9 @@
 {% block content %}
     <div class="container">
     <div class="row">
-        {% for one_user in user %}
+        {% for first_name in user %}
             <div class="col-6">
-                    <a class="btn btn-primary" href="{{ user.username }}" role="button">{% url 'user-profile' one_user.username %}</a>
+                    <a class="btn btn-primary" href="{{ user.username }}" role="button">{% url 'user-profile' first_name.username %}</a>
             </div>
             <br>
         {% endfor %}
