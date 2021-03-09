@@ -33,8 +33,8 @@ class UserUpdateView(UpdateView):
 
 class ProfileUpdateView(UpdateView):
     model = Profile
-    slug_field = 'username'
-    slug_url_kwarg = 'profile'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
     template_name = 'user/edit_profile_details.html'
     context_object_name = 'profile'
     fields = ['country', 'phone']
